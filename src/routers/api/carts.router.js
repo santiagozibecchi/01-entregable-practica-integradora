@@ -3,6 +3,8 @@ import CartManager from "../../dao/CartManager.js";
 
 const router = Router();
 
+// POST
+
 router.post("/carts", async (req, res) => {
   try {
     const newCart = await CartManager.create();
@@ -27,6 +29,15 @@ router.post("/carts/:cid/product/:pid", async (req, res) => {
   } catch (error) {
     res.status(error.statusCode || 500).json({ message: error.message });
   }
+});
+
+// GET 
+
+router.get("/carts", async (req, res) => {
+  const { cid } = req.params;
+  const cart = await CartManager.get();
+
+  res.status(200).json({ cart });
 });
 
 router.get("/carts/:cid", async (req, res) => {

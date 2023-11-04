@@ -24,11 +24,11 @@ router.get("/products/:pid", async (req, res) => {
   }
 });
 
-// single => unico archivo! nombre del campo con el cual se manda el archivo desde el cliente!
+// TODO single => unico archivo! nombre del campo con el cual se manda el archivo desde el cliente!
+// Body => form-data => File
 router.post("/products", uploader.single("productImage"), async (req, res) => {
   const { body, file } = req;
   // trabajar el file para insertar el campo thumbails
-
 
   const product = await ProductManager.create(body);
   res.status(201).json(product);

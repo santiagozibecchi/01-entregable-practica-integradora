@@ -38,8 +38,10 @@ export default class CartManager {
   };
 
   static async get(cid) {
+    const criteria = cid ? { _id: cid } : {};
+
     // TODO validar si existe
-    const cartById = await CartModel.find({ _id: cid });
+    const cartById = await CartModel.find(criteria);
     return cartById;
   }
 }
