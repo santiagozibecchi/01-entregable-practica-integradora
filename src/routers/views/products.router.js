@@ -3,9 +3,10 @@ import ProductManager from "../../dao/ProductManager.js";
 
 const router = Router();
 
-router.get("/products", async (req, res) => {
-  let students = await ProductManager.get();
-  res.render("products", { students: students.map((s) => s.toJSON()) });
+router.get("/", async (req, res) => {
+  // let students = await ProductManager.get();
+  // { students: students.map((s) => s.toJSON()) }
+  res.render("products");
 });
 
 export default router;

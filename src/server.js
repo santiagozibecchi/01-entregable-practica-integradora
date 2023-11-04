@@ -7,7 +7,7 @@ import cors from "cors";
 import { Server as SocketServer } from "socket.io";
 import { Sockets } from "./sockets.js";
 
-// VIEWS
+// CONFIGURATIONS
 import handlebars from "express-handlebars";
 import path from "path";
 
@@ -17,6 +17,7 @@ import cartsApiRouter from "./routers/api/carts.router.js";
 
 // VIEWS
 import productsRouterView from "./routers/views/products.router.js";
+import messagesRouterView from "./routers/views/messages.router.js";
 
 // UTILS
 import { __dirname } from "./utils.js";
@@ -55,7 +56,7 @@ export class Server {
 
     // Configuracion de handlebars
     this.app.engine("handlebars", handlebars.engine());
-    this.app.set("views", path.join(__dirname, "./views"));
+    this.app.set("views", path.join(__dirname, "views"));
     this.app.set("view engine", "handlebars");
 
     // Middleware de error
@@ -66,7 +67,8 @@ export class Server {
     });
 
     // Views
-    this.app.use("/", productsRouterView);
+    this.app.use("/products", productsRouterView);
+    this.app.use("/messages", messagesRouterView);
 
     // Routes
     this.app.use("/api", productsApiRouter);

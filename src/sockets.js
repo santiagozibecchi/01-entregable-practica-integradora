@@ -10,6 +10,10 @@ export class Sockets {
     // On connection
     this.io.on("connection", (socket) => {
       console.log("Cliente conectado");
+
+      // Funcionalidades!
+
+
     });
   }
 }
