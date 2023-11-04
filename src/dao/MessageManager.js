@@ -1,13 +1,13 @@
+import MessageModel from "../models/message.model.js";
+
 export default class MessageManager {
+  static async get() {
+    const allMessages = await MessageModel.find({});
+    return allMessages;
+  }
 
-    static async get(){
-
-    }
-
-    static async send(){
-
-
-    }
-
-
+  static async send(data) {
+    const message = await MessageModel.create(data);
+    return message;
+  }
 }
