@@ -10,4 +10,8 @@ export default class MessageManager {
     const message = await MessageModel.create(data);
     return message;
   }
+
+  static async delete(id) {
+    await MessageModel.deleteOne({ _id: id });
+  }
 }

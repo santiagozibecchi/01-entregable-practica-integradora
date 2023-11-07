@@ -6,23 +6,31 @@
   </head>
   <body>
     <h1>Mensajes</h1>
-    <div>
-      <h3>Enviar un mensaje: </h3>
-      <div>
-        <form id="form-message" method="post">
+
+    <div class="message">
+      <article>
+        <div>
+          <h3>Enviar un mensaje: </h3>
           <div>
-            <label for="user">Usuario</label>
-            <input type="text" name="user" id="user" required />
+            <form id="form-message" method="post">
+              <div>
+                <label for="user">Usuario</label>
+                <input type="text" name="user" id="user" required />
+              </div>
+              <div>
+                <label for="message">Mensaje</label>
+                <input type="text" name="message" id="message" required />
+              </div>
+              <input type="submit" value="Enviar" />
+            </form>
           </div>
-          <div>
-            <label for="message">Mensaje</label>
-            <input type="text" name="message" id="message" required />
-          </div>
-          <input type="submit" value="Enviar" />
-        </form>
-      </div>
+        </div>
+
+      </article>
+      <article>
+        <div id="messages"></div>
+      </article>
     </div>
-    <div id="messages"></div>
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="/js/message.js"></script>

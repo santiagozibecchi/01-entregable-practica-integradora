@@ -13,15 +13,19 @@ export class Sockets {
     this.io.on("connection", async (socket) => {
       console.log("Cliente conectado");
 
-      const getAllMessage = await MessageManager.get();
-
-      socket.emit("get-all-message", getAllMessage);
+      socket.emit("get-all-message", await MessageManager.get());
 
       // Funcionalidades para los mensajes
       socket.on("send-message", async (data) => {
         await MessageManager.send(data);
 
-        socket.emit("all-messages", getAllMessage);
+        socket.emit("get-all-message", await MessageManager.get());
+      });
+
+      socket.on("delete-message", async (id) => {
+        await MessageManager.delete(id);
+
+        socket.emit("get-all-message", await MessageManager.get());
       });
     });
   }
