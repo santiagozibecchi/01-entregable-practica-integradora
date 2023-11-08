@@ -19,13 +19,13 @@ export class Sockets {
       socket.on("send-message", async (data) => {
         await MessageManager.send(data);
 
-        socket.emit("get-all-message", await MessageManager.get());
+        this.io.emit("get-all-message", await MessageManager.get());
       });
 
       socket.on("delete-message", async (id) => {
         await MessageManager.delete(id);
 
-        socket.emit("get-all-message", await MessageManager.get());
+        this.io.emit("get-all-message", await MessageManager.get());
       });
     });
   }
