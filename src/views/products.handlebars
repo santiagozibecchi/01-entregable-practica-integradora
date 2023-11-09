@@ -51,13 +51,13 @@
             <th>Categoría</th>
             <th>Imagenes</th>
           </tr>
-          {{#each products}}
+          {{#each payload}}
             <tr>
               <td>{{this.title}}</td>
               <td>{{this.description}}</td>
               <td>{{this.code}}</td>
               <td>{{this.stock}}</td>
-              <td>{{this.price}}</td>
+              <td>$&nbsp;{{this.price}}</td>
               <td>{{this.category}}</td>
               <td>
                 {{#if this.thumbnails.length}}
