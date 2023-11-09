@@ -3,11 +3,80 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Productos</title>
+    <link rel="stylesheet" href="/css/products.css" />
   </head>
   <body>
-    <h1>Productos</h1>
+    <h1 class="color">Productos</h1>
 
-    <script src="/socket.io/socket.io.js"></script>
+    <div class="customFlex">
+      <article class="form">
+        <form id="form-product">
+          <label for="title">Título</label>
+          <input type="text" name="title" id="title" required />
+          <label for="description">Descripción</label>
+          <input type="text" name="description" id="description" required />
+          <div>
+            <label for="code">Código</label>
+            <input type="text" name="code" id="code" required />
+          </div>
+          <div>
+            <label for="stock">Stock</label>
+            <input type="number" name="stock" id="stock" required />
+          </div>
+          <div>
+            <label for="price">Precio</label>
+            <input type="number" name="price" id="price" required />
+          </div>
+          <div>
+            <label for="category">Categoría</label>
+            <input type="text" name="category" id="category" required />
+          </div>
+          <div>
+            <label for="thumbnails">Imagenes</label>
+            <input type="file" name="thumbnails" id="thumbnails" />
+          </div>
+          <input type="submit" value="Enviar" />
+
+        </form>
+      </article>
+
+      <article style="width: auto;">
+        <table id="table-products">
+          <tr>
+            <th>Título</th>
+            <th>Descripción</th>
+            <th>Código</th>
+            <th>Stock</th>
+            <th>Precio</th>
+            <th>Categoría</th>
+            <th>Imagenes</th>
+          </tr>
+          {{#each payload}}
+            <tr>
+              <td>{{this.title}}</td>
+              <td>{{this.description}}</td>
+              <td>{{this.code}}</td>
+              <td>{{this.stock}}</td>
+              <td>$&nbsp;{{this.price}}</td>
+              <td>{{this.category}}</td>
+              <td>
+                {{#if this.thumbnails.length}}
+                  {{this.thumbnails}}
+                {{else}}
+                  -
+                {{/if}}
+              </td>
+            </tr>
+          {{/each}}
+
+        </table>
+
+        <p>Página actual: {{page}}</p>
+        <a href="{{prevLink}}" role="button" {{#unless hasPrevPage}}disabled{{/unless}} >Anterior</a>
+        <a href="{{nextLink}}" role="button" {{#unless hasNextPage}}disabled{{/unless}} >Siguiente</a>
+      </article>
+    </div>
+
     <script src="/js/product.js"></script>
   </body>
 </html>
